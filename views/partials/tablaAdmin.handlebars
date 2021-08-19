@@ -1,0 +1,40 @@
+<table class="table w-50 m-auto">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Años de experiencia</th>
+      <th scope="col">Especialidad</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <th scope="row"> {{inc @index}} </th>
+        <td><div
+            style="background-image: url('../../assets/img/{{this.foto}}');"
+          ></div></td>
+        <td>{{this.nombre}}</td>
+        <td>{{this.anos_experiencia}}</td>
+        <td>{{this.especialidad}}</td>
+        {{#if this.estado}}
+        <td><input type="checkbox" value="{{this.estado}}" checked="checked" onchange="actualizarEstado({{this.id}},{{this.estado}})"/></td>
+        {{else}}
+        <td><input type="checkbox" value="{{this.estado}}" onchange="actualizarEstado({{this.id}})" /></td>
+        {{/if}}
+
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+    const actualizarEstado = (id) => {
+      axios.put('/editarestados', id)
+        
+    }
+</script>
