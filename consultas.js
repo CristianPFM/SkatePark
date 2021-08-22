@@ -23,8 +23,8 @@ const consultarUsuarios = async () => {
 };
 
 const deleteUsuario = async (id) => {
-  const result = await pool.query(`DELETE FROM skaters WHERE id = '${id}'`);
-  return result.rowCount;
+  const result = await pool.query(`DELETE FROM skaters WHERE id = '${id}' RETURNING*`);
+  return result;
 };
 
 const actualizarUsuario = async (datos) => {
@@ -52,3 +52,7 @@ module.exports = {
   actualizarUsuario,
   editarEstados
 };
+
+
+
+
